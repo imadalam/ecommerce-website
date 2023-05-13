@@ -87,7 +87,7 @@ if(isset($_POST['done']))
                 <a class="nav-link" href="contact.php">Contact Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="signin.php"> signin </a>
+                <a class="nav-link" href="signin.php"> sign in </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="register.php">Sign Up</a>
@@ -124,8 +124,11 @@ if(isset($_POST['done']))
                       Vintage Watches
                     </h1>
                     <p>
-                    Impressive selection of watches from most makes and styles Since 1997.
-                    </p>
+    <span style="color: white;">
+        Impressive selection of watches from most makes and styles Since 1997.
+    </span>
+</p>
+
                     <div class="btn-box">
                       <a href="#cntct" class="btn1">
                         Contact Us
@@ -150,8 +153,11 @@ if(isset($_POST['done']))
                       Vintage Watches
                     </h1>
                     <p>
-                    Impressive selection of watches from most makes and styles Since 1997.
-                    </p>
+    <span style="color: white;">
+        Impressive selection of watches from most makes and styles Since 1997.
+    </span>
+</p>
+
                     <div class="btn-box">
                       <a href="#cntct" class="btn1">
                         Contact Us
@@ -176,8 +182,11 @@ if(isset($_POST['done']))
                       Vintage Watches
                     </h1>
                     <p>
-                    Impressive selection of watches from most makes and styles Since 1997.
-                    </p>
+    <span style="color: white;">
+        Impressive selection of watches from most makes and styles Since 1997.
+    </span>
+</p>
+
                     <div class="btn-box">
                       <a href="#cntct" class="btn1">
                         Contact Us
