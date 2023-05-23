@@ -1,98 +1,90 @@
 <?php
 
-include 'conn.php';
+include "conn.php";
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!-- header file attach -->
+<?php
 
+include 'header.php';
+
+?>
 <head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+<link href="css/style.css" rel="stylesheet" />
+<style>
+  /* Watches Category Css */
+.category_section {
+  background-color: #f8f8f8;
+  padding: 20px 0;
+}
 
-  <title>
-    Time Zone Watches
-  </title>
+.category_container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.categories {
+  text-align: center;
+}
+
+#category-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category_link {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 8px 16px;
+  background-color: #ebebeb;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.category_link:hover {
+  color: #494949 !important;
+  background-color: red;
+border-radius: 50px;
+border-color: #494949 !important;
+transition: all 0.3s ease 0s;
+}
 
 
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-  <!--owl slider stylesheet -->
-  <link rel="stylesheet" type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-
-  <!-- font awesome style -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
-
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+</style>
 
 </head>
+<!-- header end -->
 
-<body class="sub_page">
+    <!-- collatory -->
+    <section class="category_section">
+  <div class="category_container">
+    <div class="categories">
+      <nav>
+        <ul id="category-list">
+          <?php
+            $q = "SELECT * FROM `add_brand`";
+            $query = mysqli_query($conn, $q);
 
-  <div class="hero_area">
-
-    <!-- header section strats -->
-    <header class="header_section">
-      <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.php">
-          <img src="images/timezonewatches.png" alt="" width="100px">
-          </a>
-
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class=""> </span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="index.php">Home </a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="watches.php"> Watches <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.php"> About </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact.php">Contact Us</a>
-              </li>
-            </ul>
-            <div class="user_option-box">
-              <a href="Dashboard/login.php">
-                <i class="fa fa-user" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-cart-plus" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </header>
-    <!-- end header section -->
+            while ($row = mysqli_fetch_array($query)) {
+          ?> 
+          <li class="category_link" onclick="changeColor(this)" data-category="<?php echo $row['brand_name']; ?>"><?php echo $row['brand_name']; ?></li>
+          <?php
+            }
+          ?>
+        </ul>
+      </nav>
+    </div>
   </div>
+</section>
+
+    <!--end collatory -->
+    
 
   <!-- shop section -->
 
   <section class="shop_section layout_padding">
+    <main class="product-list">
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
@@ -100,357 +92,67 @@ include 'conn.php';
         </h2>
       </div>
 
-      <div class="row">
-        <!-- <div class="col-md-6 ">
-          <div class="box">
-              <div class="img-box">
-                <img src="images/w1.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h6>
-                  Smartwatch
-                </h6>
-                <h6>
-                  Price:
-                  <span>
-                    $300
-                  </span>
-                </h6>
-              </div>
+      <div class="row" style="grid-gap: 10px; max-width: 100vw; flex-wrap: wrap;">
 
-              <div style="border: none; background-color:red;" class="new">
-                <span>
-                  Featured
-                </span>
-              </div>
-          </div>
-        </div> -->
+<?php
 
-        <?php
+$q = "SELECT * FROM `add_product`";
 
-        $q = "SELECT * FROM `add_product`";
+$query = mysqli_query($conn, $q);
 
-        $query = mysqli_query($conn, $q);
+while ($row = mysqli_fetch_array($query)) {
 
-        while ($row = mysqli_fetch_array($query)) {
-
-          ?>
-          <div class="col-sm-6 col-xl-3">
-            <div class="box">
-              <div class="img-box">
-                <img src="images/w2.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h6>
-                  <?php echo $row['product_name']; ?>
-                </h6>
-                <h6>
-                  Price: <span style=" color: black;">$</span>
-                  <span>
-                    <?php echo $row['price']; ?>
-                  </span>
-                </h6>
-              </div>
-
-              <button style="border: none; background-color:red;" onclick="location.href='detail.php';" class="new">
-                <span>
-                  Buy Now
-                </span>
-              </button>
-            </div>
-          </div>
-
-          <?php
-        }
-        ?>
-        <!-- <div class="col-sm-6 col-xl-3">
-          <div class="box">
-            <a href="">
-              <div class="img-box">
-                <img src="images/w3.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h6>
-                  Smartwatch
-                </h6>
-                <h6>
-                  Price:
-                  <span>
-                    $110
-                  </span>
-                </h6>
-              </div>
-              <div class="new">
-                <span>
-                  New
-                </span>
-              </div>
-            </a>
-          </div>
+  ?>
+  <div class="col-xs-12 flex-item">
+    <div class="product-item" data-category="<?php echo $row['product_name']; ?>">
+      <div class="box">
+        <div class="img-box">
+          <img src="Dashboard/upload/<?=$row['my_image']?>" alt="content">
         </div>
-
-        <div class="col-sm-6 col-xl-3">
-          <div class="box">
-            <a href="">
-              <div class="img-box">
-                <img src="images/w4.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h6>
-                  Smartwatch
-                </h6>
-                <h6>
-                  Price:
-                  <span>
-                    $145
-                  </span>
-                </h6>
-              </div>
-              <div class="new">
-                <span>
-                  New
-                </span>
-              </div>
-            </a>
-          </div>
+        <div class="detail-box">
+          <h6>
+            <?php echo $row['product_name']; ?> 
+          </h6>
+          <h6>
+            Price: <span style=" color: black;">$</span>
+            <span>
+              <?php echo $row['price']; ?> 
+            </span>
+          </h6>
         </div>
-        <div class="col-sm-6 col-xl-3">
-          <div class="box">
-            <a href="">
-              <div class="img-box">
-                <img src="images/w5.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h6>
-                  Smartwatch
-                </h6>
-                <h6>
-                  Price:
-                  <span>
-                    $195
-                  </span>
-                </h6>
-              </div>
-              <div class="new">
-                <span>
-                  New
-                </span>
-              </div>
-            </a>
-          </div>
+        <div class="cart_button">
+          <a href="cart.php">
+            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+          </a>
         </div>
-        <div class="col-sm-6  col-xl-3">
-          <div class="box">
-            <a href="">
-              <div class="img-box">
-                <img src="images/w6.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h6>
-                  Smartwatch
-                </h6>
-                <h6>
-                  Price:
-                  <span>
-                    $170
-                  </span>
-                </h6>
-              </div>
-              <div class="new">
-                <span>
-                  New
-                </span>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-          <div class="box">
-            <a href="">
-              <div class="img-box">
-                <img src="images/w1.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h6>
-                  Smartwatch
-                </h6>
-                <h6>
-                  Price:
-                  <span>
-                    $230
-                  </span>
-                </h6>
-              </div>
-              <div class="new">
-                <span>
-                  New
-                </span>
-              </div>
-            </a>
-          </div>
-        </div> -->
+        <button style="border: none; background-color:red;" onclick="location.href='cart.php';" class="new">
+          <span>
+            Buy Now
+          </span>
+        </button>
       </div>
-
-      <!-- <div class="btn-box">
-        <a href="">
-          View All
-        </a>
-      </div> -->
     </div>
+  </div>
+
+  <?php
+}
+?> 
+
+</div>   
+
+    </div>
+    </main>
   </section>
 
   <!-- end shop section -->
+    <!-- category js -->
+<script src="js/category.js"></script>
 
-  <!-- footer section -->
-  <footer class="footer_section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-lg-3 footer-col">
-          <div class="footer_detail">
-            <h4>
-              About
-            </h4>
-            <p>
-              Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin
-              words, combined with
-            </p>
+<!-- footer file attach -->
+  <?php
 
-            <!-- <div class="footer_social">
-              <a href="">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-linkedin" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
-              </a>
-            </div> -->
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 footer-col">
-          <div class="footer_contact">
-            <h4>
-              Reach at..
-            </h4>
-            <div class="contact_link_box">
-              <a href="">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <span>
-                  Peshawar Saddar
-                </span>
-              </a>
-              <a href="">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-                <span>
-                  +92 31234567
-                </span>
-              </a>
-              <a href="">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                <span>
-                  tzw99@gmail.com
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
+    include 'footer.php';
 
-        <div class="col-md-6 col-lg-3 footer-col">
-          <div class="footer_contact">
-            <h4>
-              Follow Us
-            </h4>
-            <div class="contact_link_box">
-              <a href="">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-                <span>
-                  Twitter
-                </span>
-              </a>
-
-              <a href="">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-                <span>
-                  Facebook
-                </span>
-              </a>
-
-              <a href="">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
-                <span>
-                  Instagram
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3 footer-col">
-          <div class="footer_contact">
-            <h4>
-              Our Pages
-            </h4>
-            <div class="contact_link_box">
-              <a href="index.php">
-                <span>
-                  Home
-                </span>
-              </a>
-
-              <a href="watches.php">
-                <span>
-                  Watches
-                </span>
-              </a>
-
-              <a href="about.php">
-                <span>
-                  About
-                </span>
-              </a>
-
-              <a href="contact.php">
-                <span>
-                  Contact
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-info">
-        <p>
-          &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="#">Sherry</a>
-        </p>
-      </div>
-    </div>
-  </footer>
-  <!-- footer section -->
-
-  <!-- jQery -->
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <!-- popper js -->
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-  <!-- bootstrap js -->
-  <script src="js/bootstrap.js"></script>
-  <!-- owl slider -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
-  </script>
-  <!-- custom js -->
-  <script src="js/custom.js"></script>
-  <!-- Google Map -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
-  <!-- End Google Map -->
-
-</body>
-
-</html>
+  ?>
+<!-- footer end -->
+  
